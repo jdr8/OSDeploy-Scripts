@@ -1,4 +1,4 @@
-$ScriptName = 'win11.frzn.au'
+$ScriptName = 'Win11 Deployment'
 $ScriptVersion = '0.1.0'
 Write-Host -ForegroundColor Green "$ScriptName $ScriptVersion"
 #iex (irm functions.osdcloud.com) #Add custom fucntions from OSDCloud
@@ -6,10 +6,12 @@ Write-Host -ForegroundColor Green "$ScriptName $ScriptVersion"
 <# Offline Driver Details
 If you extract Driver Packs to your Flash Drive, you can DISM them in while in WinPE and it will make the process much faster, plus ensure driver support for first Boot
 Extract to: OSDCLoudUSB:\OSDCloud\DriverPacks\DISM\$ComputerManufacturer\$ComputerProduct
-Use OSD Module to determine Vars
+#>
+
+#Use OSD Module to determine Vars
+
 $ComputerProduct = (Get-MyComputerProduct)
 $ComputerManufacturer = (Get-MyComputerManufacturer -Brief)
-#>
 
 $LenovoBIOSSettingsScriptURL = ''
 $HPBIOSSettingsScriptURL = ''
@@ -31,9 +33,9 @@ $Global:MyOSDCloud = [ordered]@{
     Restart = [bool]$true
     RecoveryPartition = [bool]$true
     OEMActivation = [bool]$True
-    WindowsUpdate = [bool]$true
+    WindowsUpdate = [bool]$false
     WindowsUpdateDrivers = [bool]$true
-    WindowsDefenderUpdate = [bool]$true
+    WindowsDefenderUpdate = [bool]$false
     SetTimeZone = [bool]$true
     ClearDiskConfirm = [bool]$False
     ShutdownSetupComplete = [bool]$true
